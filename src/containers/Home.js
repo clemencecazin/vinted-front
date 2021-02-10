@@ -11,9 +11,11 @@ const Home = ({ data, setData }) => {
                 // console.log(offers);
                 return (
                     <>
-                        <div className="offers" key={offers.id}>
-                            {offers.product_price}
-                            {/* <div>
+                        <Link to={`/offer/${offers._id}`}>
+                            <div className="offers" key={offers.id}>
+                                {/* {offers._id} */}
+                                {offers.product_price}
+                                {/* <div>
                             {offers.product_pictures.map(
                                 (imagesrc, indeximg) => {
                                     return (
@@ -26,41 +28,45 @@ const Home = ({ data, setData }) => {
                             )}
                         </div> */}
 
-                            <div>
-                                {offers.product_details.map(
-                                    (details, indeximg) => {
-                                        return (
-                                            <div>
-                                                {details.MARQUE}{" "}
-                                                {details.TAILLE}
-                                            </div>
-                                        );
-                                    }
-                                )}
-                            </div>
-                            <div>
-                                <img
-                                    src={offers.product_image.secure_url}
-                                    alt={offers.product_name}
-                                />
-                            </div>
-                            <div>
-                                <div className="owner">
-                                    {offers.owner.account.username}
-                                    {offers.owner.account.avatar ? (
-                                        <img
-                                            src={
-                                                offers.owner.account.avatar
-                                                    .secure_url
-                                            }
-                                            alt={offers.owner.account.username}
-                                        />
-                                    ) : (
-                                        ""
+                                <div>
+                                    {offers.product_details.map(
+                                        (details, indeximg) => {
+                                            return (
+                                                <div>
+                                                    {details.MARQUE}{" "}
+                                                    {details.TAILLE}
+                                                </div>
+                                            );
+                                        }
                                     )}
                                 </div>
+                                <div>
+                                    <img
+                                        src={offers.product_image.secure_url}
+                                        alt={offers.product_name}
+                                    />
+                                </div>
+                                <div>
+                                    <div className="owner">
+                                        {offers.owner.account.username}
+                                        {offers.owner.account.avatar ? (
+                                            <img
+                                                src={
+                                                    offers.owner.account.avatar
+                                                        .secure_url
+                                                }
+                                                alt={
+                                                    offers.owner.account
+                                                        .username
+                                                }
+                                            />
+                                        ) : (
+                                            ""
+                                        )}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </>
                 );
             })}
