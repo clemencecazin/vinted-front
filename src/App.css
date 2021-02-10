@@ -1,1 +1,16 @@
 /* Other rules */
+
+.offers {
+    display: flex;
+}
+
+img {
+    width: 200px;
+}
+
+.owner img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
