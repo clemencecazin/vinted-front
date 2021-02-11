@@ -1,73 +1,88 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-const Home = ({ data, setData }) => {
+const Home = () => {
+    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get(
+                "https://lereacteur-vinted-api.herokuapp.com/offers"
+            );
+            setData(response.data);
+            console.log(response.data);
+            setIsLoading(false);
+        };
+        fetchData();
+    }, []);
+
     // return <Link to={`/offer/`}> Go</Link>;
 
     // console.log(data);
 
-    return (
-        <div>
-            {data.map((offers, index) => {
+    return isLoading ? (
+        <p>En cours de chargement...</p>
+    ) : (
+        <div className="offers">
+            {data.offers.map((offer, index) => {
                 // console.log(offers);
                 return (
-                    <>
-                        <Link to={`/offer/${offers._id}`}>
-                            <div className="offers" key={offers.id}>
-                                {/* {offers._id} */}
-                                {offers.product_price}
+                    <div key={offer._id}>
+                        <Link to={`/offer/${offer._id}`}>
+                            <div className="owner">
+                                {offer.owner.account.username}
+                                {offer.owner.account.avatar ? (
+                                    <img
+                                        src={
+                                            offer.owner.account.avatar
+                                                .secure_url
+                                        }
+                                        alt={offer.owner.account.username}
+                                    />
+                                ) : (
+                                    ""
+                                )}
+                            </div>
+
+                            <div>
+                                <img
+                                    src={offer.product_image.secure_url}
+                                    alt={offer.product_name}
+                                />
+                            </div>
+                            <div>
+                                {/* {offer._id} */}
+                                {offer.product_price}
                                 {/* <div>
-                            {offers.product_pictures.map(
-                                (imagesrc, indeximg) => {
-                                    return (
-                                        <img
-                                            src={imagesrc.secure_url}
-                                            alt={offers.product_name}
-                                        />
-                                    );
-                                }
-                            )}
-                        </div> */}
+                                    {offer.product_pictures.map(
+                                        (imagesrc, indeximg) => {
+                                            return (
+                                                <img
+                                                    src={imagesrc.secure_url}
+                                                    alt={offer.product_name}
+                                                />
+                                            );
+                                        }
+                                    )}
+                                </div> */}
 
                                 <div>
-                                    {offers.product_details.map(
+                                    {offer.product_details.map(
                                         (details, indeximg) => {
                                             return (
                                                 <div>
-                                                    {details.MARQUE}{" "}
+                                                    {details.MARQUE}
                                                     {details.TAILLE}
                                                 </div>
                                             );
                                         }
                                     )}
                                 </div>
-                                <div>
-                                    <img
-                                        src={offers.product_image.secure_url}
-                                        alt={offers.product_name}
-                                    />
-                                </div>
-                                <div>
-                                    <div className="owner">
-                                        {offers.owner.account.username}
-                                        {offers.owner.account.avatar ? (
-                                            <img
-                                                src={
-                                                    offers.owner.account.avatar
-                                                        .secure_url
-                                                }
-                                                alt={
-                                                    offers.owner.account
-                                                        .username
-                                                }
-                                            />
-                                        ) : (
-                                            ""
-                                        )}
-                                    </div>
-                                </div>
                             </div>
                         </Link>
-                    </>
+                    </div>
                 );
             })}
         </div>
