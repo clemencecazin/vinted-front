@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ setUser }) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [data, setData] = useState();
+
+    const history = useHistory();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -17,7 +20,10 @@ const Signup = () => {
                     { username, email, phone, password }
                 );
                 setData(response.data);
-                // console.log(response.data);
+                console.log(response.data);
+
+                setUser(response.data.token);
+                history.push("/");
             } catch (error) {
                 console.log(error);
             }

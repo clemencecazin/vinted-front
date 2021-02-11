@@ -1,13 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setUserToken, setUser }) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [data, setData] = useState();
 
+    const history = useHistory();
+
     const handleSubmit = (event) => {
         event.preventDefault();
+
         const fetchData = async () => {
             try {
                 const response = await axios.post(
@@ -15,7 +19,13 @@ const Login = () => {
                     { email, password }
                 );
                 setData(response.data);
-                console.log(response.data);
+                // console.log(response.data);
+
+                setUser(response.data.token);
+
+                console.log(response.data.token);
+
+                history.push("/");
             } catch (error) {
                 console.log(error);
             }
