@@ -30,6 +30,9 @@ const Signup = ({ setUser }) => {
         };
         fetchData();
     };
+
+    // Au clic on fait appelle à l'API signup et on lui passe les informations du formulaire, on passe le token dans la fonction setUser, pour qu'elle garde le token en mémoire
+
     return (
         <form className="form" onSubmit={handleSubmit}>
             <input

@@ -1,11 +1,117 @@
 /* Other rules */
+:root {
+    --text-color: #333;
+    --radius-mini: 10px;
+    --radius-large: 30px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* HEADER */
+
+.header--container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header--logo img {
+    height: 45px;
+}
+
+.header--button-login-signup {
+    width: 115px;
+    height: 30px;
+    border: 1px solid #2cb1ba;
+    border-radius: 5px;
+    font-size: 12px;
+    outline: none;
+    background-color: #fff;
+    color: #2cb1ba;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.login-signup {
+    display: flex;
+}
+
+.login-signup a:first-child {
+    margin-right: 20px;
+}
+
+.header--button-sold {
+    background-color: #2cb1ba;
+    color: #fff;
+    border-radius: 5px;
+    width: 115px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 12px;
+    outline: none;
+    border: none;
+}
+
+.search-input {
+    width: 590px;
+    padding-left: 40px;
+    background-color: #f5f6f7;
+    border-radius: 5px;
+    height: 37px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+/* HERO */
+
+.hero {
+    background-image: url("./assets/hero.jpg");
+    height: 455px;
+    width: 100%;
+    position: relative;
+    background-position: 50%;
+    background-size: cover;
+}
+
+.hero--card {
+    max-width: 1280px;
+    margin: auto;
+}
+
+.hero--card div {
+    height: 220px;
+    width: 360px;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 3px;
+    font-size: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 75px;
+    box-shadow: 0 0 2px rgb(17 17 17 / 24%);
+}
 
 .offers {
     display: flex;
 }
 
 img {
-    width: 200px;
+    height: 400px;
 }
 
 .owner img {

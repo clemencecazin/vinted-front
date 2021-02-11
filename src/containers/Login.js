@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const Login = ({ setUserToken, setUser }) => {
+const Login = ({ setUser }) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [data, setData] = useState();
@@ -32,6 +32,9 @@ const Login = ({ setUserToken, setUser }) => {
         };
         fetchData();
     };
+
+    // Au clic on appelle l'API login on vérifie si me mdp et user sont valides, on enregistre le token retourné dans la fonction setUser
+    // History permet de renvoyer vers la page sur laquelle on était
 
     return (
         <div>
