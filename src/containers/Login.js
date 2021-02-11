@@ -15,7 +15,6 @@ const Login = () => {
                     { email, password }
                 );
                 setData(response.data);
-                // const token = data.token;
                 console.log(response.data);
             } catch (error) {
                 console.log(error);
