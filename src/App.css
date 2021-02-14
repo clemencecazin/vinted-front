@@ -75,15 +75,17 @@ li {
 }
 
 button.signout {
-    background-color: #2cb1ba;
-    color: #fff;
-    border-radius: 5px;
     width: 115px;
     height: 30px;
+    border: 1px solid #2cb1ba;
     border-radius: 5px;
     font-size: 12px;
     outline: none;
-    border: none;
+    background-color: #fff;
+    color: #2cb1ba;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     cursor: pointer;
 }
 
@@ -153,6 +155,19 @@ button.signout {
     margin-top: 32px;
 }
 
+.hero span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    background-image: url(./assets/hero_effect.svg);
+    background-position: bottom -1px right -1px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 50%;
+}
+
 /* HOME */
 
 .offers--container {
@@ -162,7 +177,7 @@ button.signout {
     flex-wrap: wrap;
 }
 
-.offers--container > div {
+.offers--container .offers--container--product {
     width: calc(100% / 5 - (0px / 5));
     display: flex;
     justify-content: center;

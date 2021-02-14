@@ -1,6 +1,7 @@
 const Hero = () => {
     return (
         <div className="hero">
+            <span></span>
             <div className="hero--card">
                 <div>
                     Prêts à faire du tri dans vos placards ?
