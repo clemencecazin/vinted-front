@@ -7,7 +7,6 @@ const Signup = ({ setUser }) => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
-    const [data, setData] = useState();
 
     const history = useHistory();
 
@@ -17,13 +16,20 @@ const Signup = ({ setUser }) => {
             try {
                 const response = await axios.post(
                     "https://project-vinted.herokuapp.com/user/signup",
-                    { username, email, phone, password }
+                    {
+                        username: username,
+                        email: email,
+                        phone: phone,
+                        password: password,
+                    }
                 );
-                setData(response.data);
-                console.log(response.data);
 
-                setUser(response.data.token);
-                history.push("/");
+                // setData(response.data);
+                // console.log(response.data);
+                if (response.data.token) {
+                    setUser(response.data.token);
+                    history.push("/");
+                }
             } catch (error) {
                 console.log(error);
             }

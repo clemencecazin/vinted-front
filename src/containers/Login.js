@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 const Login = ({ setUser }) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [data, setData] = useState();
+    const [errorMessage, setErrorMessage] = useState("");
 
     const history = useHistory();
 
@@ -16,18 +16,25 @@ const Login = ({ setUser }) => {
             try {
                 const response = await axios.post(
                     "https://project-vinted.herokuapp.com/user/login",
-                    { email, password }
+                    { email: email, password: password }
                 );
-                setData(response.data);
+
                 // console.log(response.data);
+                if (response.data.token) {
+                    setUser(response.data.token);
 
-                setUser(response.data.token);
+                    console.log(response.data.token);
 
-                console.log(response.data.token);
-
-                history.push("/");
+                    history.push("/");
+                }
             } catch (error) {
                 console.log(error);
+                setErrorMessage(
+                    "Le mail ou/et le mot de passe n'est pas correct"
+                );
+                if (error.response) {
+                    console.log(error.response.message);
+                }
             }
         };
         fetchData();
@@ -58,6 +65,7 @@ const Login = ({ setUser }) => {
                 />
 
                 <button type="submit">Se connecter</button>
+                <span>{errorMessage}</span>
             </form>
         </div>
     );

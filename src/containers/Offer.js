@@ -28,35 +28,50 @@ const Offer = () => {
     return isLoading ? (
         <p>En cours de chargement...</p>
     ) : (
-        <>
-            <div>Coucou</div>
+        <div className="bg-offers">
+            <div className="offers--container offers">
+                <div className="offers-picture">
+                    <img
+                        src={data.product_image.secure_url}
+                        alt={data.product_name}
+                    />
+                </div>
 
-            <div>{data.product_name}</div>
-            <div>{data.product_price}</div>
-            <div>{data.product_description}</div>
+                <div className="offers--infos">
+                    <div>
+                        <span>{data.product_price} €</span>
 
-            <div>{data.owner.account.username}</div>
+                        <ul>
+                            {data.product_details.map((elem, index) => {
+                                const keysObj = Object.keys(elem);
+                                console.log(keysObj);
+                                return (
+                                    <li>
+                                        <span>{keysObj[0]}</span>
+                                        <span>{elem[keysObj[0]]}</span>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                    <div class="separation"></div>
+                    <div>
+                        <p>{data.product_name}</p>
+                        <p>{data.product_description}</p>
 
-            <img src={data.product_image.secure_url} alt="data.product_name" />
+                        <div>{data.owner.account.username}</div>
 
-            {/* <div>
+                        <button>Acheter</button>
+                        {/* <div>
                 <img
                     src={data.owner.account.avatar.secure_url}
                     alt={data.owner.account.username}
                 />
             </div> */}
-
-            {data.product_details.map((elem, index) => {
-                const keys = Object.keys(elem);
-                console.log(keys);
-                return (
-                    <div>
-                        <span>{keys[0]}</span>
-                        <span>{elem[keys[0]]}</span>
                     </div>
-                );
-            })}
-        </>
+                </div>
+            </div>
+        </div>
     );
 };
 

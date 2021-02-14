@@ -9,10 +9,16 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    font-weight: 100;
 }
 
 a {
     text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
 }
 
 /* HEADER */
@@ -28,6 +34,10 @@ a {
 
 .header--logo img {
     height: 45px;
+}
+
+.header--container div:nth-child(2) {
+    position: relative;
 }
 
 .header--button-login-signup {
@@ -64,6 +74,19 @@ a {
     border: none;
 }
 
+button.signout {
+    background-color: #2cb1ba;
+    color: #fff;
+    border-radius: 5px;
+    width: 115px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 12px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
 .search-input {
     width: 590px;
     padding-left: 40px;
@@ -73,6 +96,18 @@ a {
     border: none;
     outline: none;
     font-size: 16px;
+    position: relative;
+}
+
+.search-input::placeholder {
+    color: #cccccc;
+}
+
+.search-input-icon {
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    color: #bbb;
 }
 
 /* HERO */
@@ -106,12 +141,61 @@ a {
     box-shadow: 0 0 2px rgb(17 17 17 / 24%);
 }
 
-.offers {
-    display: flex;
+.hero--card div button {
+    height: 45px;
+    width: 187px;
+    background-color: #2baeb7;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    padding: 0 14px;
+    margin-top: 32px;
 }
 
-img {
-    height: 400px;
+/* HOME */
+
+.offers--container {
+    max-width: 1280px;
+    margin: 30px auto auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.offers--container > div {
+    width: calc(100% / 5 - (0px / 5));
+    display: flex;
+    justify-content: center;
+}
+
+.offers--container div img {
+    height: 360px;
+    width: 235px;
+    object-fit: cover;
+}
+
+.owner div:first-child {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.owner div:first-child > span {
+    color: #999;
+    font-size: 12px;
+}
+
+.offers--container > div div:nth-child(3) > span {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.offers--container > div div:nth-child(3) div span {
+    font-size: 12px;
+    color: #999;
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
 }
 
 .owner img {
@@ -119,4 +203,97 @@ img {
     width: 100px;
     height: 100px;
     object-fit: cover;
+}
+
+/* OFFER */
+
+.offers {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+}
+.bg-offers {
+    background-color: #eaedee;
+
+    height: 100%;
+}
+
+.offers .offers-picture {
+    height: 600px;
+    max-width: 450px;
+    object-fit: cover;
+}
+
+.offers .offers-picture img {
+    height: 100%;
+    width: 100%;
+}
+
+.offers .offers--infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 320px;
+    padding: 40px;
+    max-height: 520px;
+}
+
+.offers .offers--infos div:first-child > span {
+    font-size: 24px;
+    line-height: 32px;
+    color: #111;
+    font-weight: 300;
+}
+
+.offers .offers--infos div:first-child ul {
+    padding: 0;
+}
+
+.offers .offers--infos div:first-child li {
+    display: flex;
+    padding: 2px 0;
+}
+
+.offers .offers--infos div:first-child li span {
+    flex: 1 1;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.offers .offers--infos div:first-child li span:nth-child(odd) {
+    color: #999;
+}
+
+.offers .offers--infos div:first-child li span:nth-child(2n) {
+    color: #666;
+    font-weight: 600;
+}
+
+.separation {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: rgba(17, 17, 17, 0.1);
+}
+
+.offers .offers--infos div:nth-child(3) p:first-child {
+    font-weight: 700;
+}
+
+.offers .offers--infos div:nth-child(3) p:not(:first-child) {
+    color: #666;
+}
+
+.offers .offers--infos div:nth-child(3) button {
+    color: #fff;
+    background: #09b1ba;
+    border: 1px solid #09b1ba;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+    height: 36px;
+    padding: 0 16px;
+    line-height: 36px;
+    margin-top: 32px;
 }

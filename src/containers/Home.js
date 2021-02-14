@@ -2,21 +2,24 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Home = () => {
-    const [data, setData] = useState();
+const Home = ({ data, setData }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get(
-                "https://project-vinted.herokuapp.com/offers"
-            );
-            setData(response.data);
-            console.log(response.data);
-            setIsLoading(false);
+            try {
+                const response = await axios.get(
+                    "https://project-vinted.herokuapp.com/offers"
+                );
+                setData(response.data);
+                console.log(response.data);
+                setIsLoading(false);
+            } catch (error) {
+                console.log(error.message);
+            }
         };
         fetchData();
-    }, []);
+    }, [setData]);
 
     // return <Link to={`/offer/`}> Go</Link>;
 
@@ -25,25 +28,27 @@ const Home = () => {
     return isLoading ? (
         <p>En cours de chargement...</p>
     ) : (
-        <div className="offers">
+        <div className="offers--container">
             {data.offers.map((offer, index) => {
                 // console.log(offers);
                 return (
                     <div key={offer._id}>
                         <Link to={`/offer/${offer._id}`}>
                             <div className="owner">
-                                {offer.owner.account.username}
-                                {offer.owner.account.avatar ? (
-                                    <img
-                                        src={
-                                            offer.owner.account.avatar
-                                                .secure_url
-                                        }
-                                        alt={offer.owner.account.username}
-                                    />
-                                ) : (
-                                    ""
-                                )}
+                                <div>
+                                    <span>{offer.owner.account.username}</span>
+                                    {offer.owner.account.avatar ? (
+                                        <img
+                                            src={
+                                                offer.owner.account.avatar
+                                                    .secure_url
+                                            }
+                                            alt={offer.owner.account.username}
+                                        />
+                                    ) : (
+                                        ""
+                                    )}
+                                </div>
                             </div>
 
                             <div>
@@ -54,7 +59,7 @@ const Home = () => {
                             </div>
                             <div>
                                 {/* {offer._id} */}
-                                {offer.product_price}
+                                <span>{offer.product_price} €</span>
                                 {/* <div>
                                     {offer.product_pictures.map(
                                         (imagesrc, indeximg) => {
@@ -72,10 +77,14 @@ const Home = () => {
                                     {offer.product_details.map(
                                         (details, indeximg) => {
                                             return (
-                                                <div>
-                                                    {details.MARQUE}
-                                                    {details.TAILLE}
-                                                </div>
+                                                <>
+                                                    <span>
+                                                        {details.MARQUE}
+                                                    </span>
+                                                    <span>
+                                                        {details.TAILLE}
+                                                    </span>
+                                                </>
                                             );
                                         }
                                     )}
