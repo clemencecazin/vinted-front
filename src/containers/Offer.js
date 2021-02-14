@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import loader from "../assets/loader.png";
 
 const Offer = () => {
     const { id } = useParams();
@@ -26,7 +27,10 @@ const Offer = () => {
     }, [id]);
 
     return isLoading ? (
-        <p>En cours de chargement...</p>
+        <div className="loader">
+            <img src={loader} alt="loader" />
+            <p>En cours de chargement...</p>
+        </div>
     ) : (
         <div className="bg-offers">
             <div className="offers--container offers">

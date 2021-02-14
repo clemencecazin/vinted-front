@@ -40,53 +40,57 @@ const Signup = ({ setUser }) => {
     // Au clic on fait appelle à l'API signup et on lui passe les informations du formulaire, on passe le token dans la fonction setUser, pour qu'elle garde le token en mémoire
 
     return (
-        <form className="form" onSubmit={handleSubmit}>
-            <input
-                type="text"
-                placeholder="username"
-                value={username}
-                onChange={(event) => {
-                    console.log(event.target.value);
+        <div className="signup-container">
+            <h2>S'inscrire</h2>
+            <form className="form" onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Nom d'utilisateur"
+                    value={username}
+                    onChange={(event) => {
+                        console.log(event.target.value);
 
-                    setUsername(event.target.value);
-                }}
-            />
+                        setUsername(event.target.value);
+                    }}
+                />
 
-            <input
-                type="email"
-                placeholder="email"
-                value={email}
-                onChange={(event) => {
-                    console.log(event.target.value);
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(event) => {
+                        console.log(event.target.value);
 
-                    setEmail(event.target.value);
-                }}
-            />
+                        setEmail(event.target.value);
+                    }}
+                />
 
-            <input
-                type="text"
-                placeholder="phone"
-                value={phone}
-                onChange={(event) => {
-                    console.log(event.target.value);
+                <input
+                    type="text"
+                    placeholder="Phone"
+                    value={phone}
+                    onChange={(event) => {
+                        console.log(event.target.value);
 
-                    setPhone(event.target.value);
-                }}
-            />
+                        setPhone(event.target.value);
+                    }}
+                />
 
-            <input
-                type="password"
-                placeholder="password"
-                value={password}
-                onChange={(event) => {
-                    console.log(event.target.value);
+                <input
+                    type="password"
+                    placeholder="Mot de passe"
+                    value={password}
+                    onChange={(event) => {
+                        console.log(event.target.value);
 
-                    setPassword(event.target.value);
-                }}
-            />
+                        setPassword(event.target.value);
+                    }}
+                />
 
-            <button type="submit">Submit</button>
-        </form>
+                <button type="submit">Submit</button>
+            </form>
+            <a href="/Login">Tu as déjà un compte ? Connecte-toi !</a>
+        </div>
     );
 };
 

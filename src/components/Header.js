@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Header = ({ userToken, setUser, data, setData }) => {
+const Header = ({ userToken, setUser, data, setData, owner }) => {
     const [resultSearch, setresultSearch] = useState();
 
     const search = (event) => {

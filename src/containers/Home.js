@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import loader from "../assets/loader.png";
 
 const Home = ({ data, setData }) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,10 @@ const Home = ({ data, setData }) => {
     // console.log(data);
 
     return isLoading ? (
-        <p>En cours de chargement...</p>
+        <div className="loader">
+            <img src={loader} alt="loader" />
+            <p>En cours de chargement...</p>
+        </div>
     ) : (
         <div className="offers--container">
             {data.offers.map((offer, index) => {

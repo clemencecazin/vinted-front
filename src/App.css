@@ -21,6 +21,11 @@ li {
     list-style: none;
 }
 
+h2 {
+    font-size: 24px;
+    font-weight: 300;
+}
+
 /* HEADER */
 
 .header--container {
@@ -38,6 +43,8 @@ li {
 
 .header--container div:nth-child(2) {
     position: relative;
+    width: 590px;
+    min-width: 300px;
 }
 
 .header--button-login-signup {
@@ -90,7 +97,7 @@ button.signout {
 }
 
 .search-input {
-    width: 590px;
+    width: 100%;
     padding-left: 40px;
     background-color: #f5f6f7;
     border-radius: 5px;
@@ -178,9 +185,10 @@ button.signout {
 }
 
 .offers--container .offers--container--product {
-    width: calc(100% / 5 - (0px / 5));
+    width: calc(100% / 5 - (100px / 5));
     display: flex;
     justify-content: center;
+    padding: 0 10px;
 }
 
 .offers--container div img {
@@ -192,7 +200,7 @@ button.signout {
 .owner div:first-child {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 40px 0 10px;
 }
 
 .owner div:first-child > span {
@@ -229,8 +237,7 @@ button.signout {
 }
 .bg-offers {
     background-color: #eaedee;
-
-    height: 100%;
+    height: 100vh;
 }
 
 .offers .offers-picture {
@@ -311,4 +318,224 @@ button.signout {
     padding: 0 16px;
     line-height: 36px;
     margin-top: 32px;
+}
+
+/*SIGNUP */
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.signup-container form {
+    width: 275px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.signup-container form > input {
+    border: none;
+    border-bottom: 1px solid #fcced3;
+    height: 35px;
+    margin-bottom: 20px;
+    width: 100%;
+    outline: none;
+}
+
+.signup-container form > input::placeholder {
+    color: #cccccc;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.signup-container form button {
+    background-color: #2cb1ba;
+    height: 45px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.signup-container a {
+    color: #2cb1ba;
+    font-size: 12px;
+}
+
+/* LOADER */
+
+.loader {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 2000;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader p {
+    margin-top: 240px;
+    color: #09b1ba;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.loader img {
+    width: 100px;
+    z-index: 100000;
+    position: absolute;
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+    animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@-webkit-keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+    10% {
+        -webkit-transform: scale(0.89);
+        transform: scale(0.89);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    17% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+    33% {
+        -webkit-transform: scale(0.87);
+        transform: scale(0.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+}
+@keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+    10% {
+        -webkit-transform: scale(0.89);
+        transform: scale(0.89);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    17% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+    33% {
+        -webkit-transform: scale(0.87);
+        transform: scale(0.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+}
+
+.card_responsive {
+    display: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .offers--container {
+        margin: 0 30px;
+    }
+    .offers--container .offers--container--product {
+        width: calc(100% / 4 - (160px / 4));
+        margin: 0 10px;
+    }
+
+    .hero--card div {
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 960px) {
+    .offers--container .offers--container--product {
+        width: calc(100% / 3 - (120px / 3));
+        margin: 0 10px;
+    }
+
+    .offers .offers--infos {
+        width: 100%;
+    }
+
+    .offers .offers-picture {
+        height: auto;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+@media (max-width: 720px) {
+    .offers--container .offers--container--product {
+        width: calc(100% / 2 - (80px / 2));
+        margin: 0 10px;
+    }
+    .hero--card div {
+        display: none;
+    }
+
+    .card_responsive {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card_responsive {
+        background-color: #fff;
+        padding: 25px;
+        font-size: 24px;
+        text-align: center;
+        top: 75px;
+        font-weight: 400;
+    }
+
+    .card_responsive button {
+        height: 45px;
+        width: 100%;
+        background-color: #2baeb7;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        margin-top: 32px;
+    }
 }
