@@ -13,7 +13,7 @@ const Home = ({ data, setData }) => {
                     "https://project-vinted.herokuapp.com/offers"
                 );
                 setData(response.data);
-                console.log(response.data);
+                // console.log(response.data);
                 setIsLoading(false);
             } catch (error) {
                 console.log(error.message);
@@ -21,8 +21,6 @@ const Home = ({ data, setData }) => {
         };
         fetchData();
     }, [setData]);
-
-    // return <Link to={`/offer/`}> Go</Link>;
 
     // console.log(data);
 
@@ -81,14 +79,14 @@ const Home = ({ data, setData }) => {
                                     {offer.product_details.map(
                                         (details, indeximg) => {
                                             return (
-                                                <>
+                                                <div>
                                                     <span>
                                                         {details.MARQUE}
                                                     </span>
                                                     <span>
                                                         {details.TAILLE}
                                                     </span>
-                                                </>
+                                                </div>
                                             );
                                         }
                                     )}

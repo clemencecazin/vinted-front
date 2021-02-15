@@ -1,8 +1,9 @@
 /* Other rules */
 :root {
     --text-color: #333;
-    --radius-mini: 10px;
-    --radius-large: 30px;
+    --button-color: #2cb1ba;
+    --button-color2: #fff;
+    --button-radius: 5px;
 }
 
 body {
@@ -26,6 +27,10 @@ h2 {
     font-weight: 300;
 }
 
+button {
+    outline: none;
+}
+
 /* HEADER */
 
 .header--container {
@@ -41,7 +46,7 @@ h2 {
     height: 45px;
 }
 
-.header--container div:nth-child(2) {
+.header--container > div:nth-child(2) {
     position: relative;
     width: 590px;
     min-width: 300px;
@@ -50,12 +55,12 @@ h2 {
 .header--button-login-signup {
     width: 115px;
     height: 30px;
-    border: 1px solid #2cb1ba;
-    border-radius: 5px;
+    border: 1px solid var(--button-color);
+    border-radius: var(--button-radius);
     font-size: 12px;
     outline: none;
-    background-color: #fff;
-    color: #2cb1ba;
+    background-color: var(--button-color2);
+    color: var(--button-color);
     align-items: center;
     display: flex;
     justify-content: center;
@@ -70,26 +75,28 @@ h2 {
 }
 
 .header--button-sold {
-    background-color: #2cb1ba;
-    color: #fff;
-    border-radius: 5px;
-    width: 115px;
+    background-color: var(--button-color);
+    color: var(--button-color2);
+    border-radius: var(--button-radius);
     height: 30px;
-    border-radius: 5px;
     font-size: 12px;
     outline: none;
     border: none;
+    display: flex;
+    align-items: center;
+    width: 115px;
+    justify-content: center;
 }
 
 button.signout {
     width: 115px;
     height: 30px;
-    border: 1px solid #2cb1ba;
-    border-radius: 5px;
+    border: none;
+    border-radius: var(--button-radius);
     font-size: 12px;
     outline: none;
-    background-color: #fff;
-    color: #2cb1ba;
+    background-color: #c2175b;
+    color: var(--button-color2);
     align-items: center;
     display: flex;
     justify-content: center;
@@ -100,7 +107,7 @@ button.signout {
     width: 100%;
     padding-left: 40px;
     background-color: #f5f6f7;
-    border-radius: 5px;
+    border-radius: var(--button-radius);
     height: 37px;
     border: none;
     outline: none;
@@ -148,18 +155,23 @@ button.signout {
     position: absolute;
     top: 75px;
     box-shadow: 0 0 2px rgb(17 17 17 / 24%);
+    line-height: 1.2;
 }
 
-.hero--card div button {
+.hero--card div a {
     height: 45px;
     width: 187px;
-    background-color: #2baeb7;
-    border-radius: 4px;
-    color: #fff;
+    background-color: var(--button-color);
+    border-radius: var(--button-radius);
+    color: var(--button-color2);
     font-size: 16px;
     border: none;
     padding: 0 14px;
     margin-top: 32px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero span {
@@ -182,6 +194,7 @@ button.signout {
     margin: 30px auto auto;
     display: flex;
     flex-wrap: wrap;
+    padding-bottom: 80px;
 }
 
 .offers--container .offers--container--product {
@@ -308,10 +321,10 @@ button.signout {
 }
 
 .offers .offers--infos div:nth-child(3) button {
-    color: #fff;
-    background: #09b1ba;
-    border: 1px solid #09b1ba;
-    border-radius: 4px;
+    color: var(--button-color2);
+    background: var(--button-color);
+    border: 1px solid var(--button-color);
+    border-radius: var(--button-radius);
     width: 100%;
     font-size: 16px;
     height: 36px;
@@ -336,6 +349,13 @@ button.signout {
     margin-bottom: 20px;
 }
 
+.signup-container form div {
+    margin-top: 20px;
+    font-size: 16px;
+    color: red;
+    line-height: 1.5;
+}
+
 .signup-container form > input {
     border: none;
     border-bottom: 1px solid #fcced3;
@@ -352,21 +372,33 @@ button.signout {
 }
 
 .signup-container form button {
-    background-color: #2cb1ba;
+    background-color: var(--button-color);
     height: 45px;
     width: 100%;
     border: none;
     outline: none;
-    border-radius: 5px;
-    color: #fff;
+    border-radius: var(--button-radius);
+    color: var(--button-color2);
     font-size: 16px;
     margin-top: 20px;
     cursor: pointer;
 }
 
 .signup-container a {
-    color: #2cb1ba;
+    color: var(--button-color);
     font-size: 12px;
+}
+
+/* PUBLISH */
+
+.publish-container {
+    max-width: 1280px;
+    margin: auto;
+}
+
+.publish-container form {
+    display: flex;
+    flex-direction: column;
 }
 
 /* LOADER */
@@ -384,8 +416,8 @@ button.signout {
 }
 
 .loader p {
-    margin-top: 240px;
-    color: #09b1ba;
+    margin-top: 220px;
+    color: var(--button-color);
     font-weight: 300;
     font-size: 18px;
 }
@@ -471,6 +503,10 @@ button.signout {
     display: none;
 }
 
+.menu_responsive > div {
+    display: none;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 1200px) {
@@ -485,11 +521,15 @@ button.signout {
     .hero--card div {
         margin-left: 30px;
     }
+    .header--logo {
+        margin-right: 30px;
+        margin-left: 25px;
+    }
 }
 
 @media (max-width: 960px) {
     .offers--container .offers--container--product {
-        width: calc(100% / 3 - (120px / 3));
+        width: calc(100% / 2 - (80px / 2));
         margin: 0 10px;
     }
 
@@ -502,13 +542,26 @@ button.signout {
         object-fit: cover;
         width: 100%;
     }
+
+    .menu_responsive {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu_responsive > div {
+        background-color: black;
+        margin: 2px 0;
+        width: 20px;
+        height: 2px;
+    }
 }
 
 @media (max-width: 720px) {
     .offers--container .offers--container--product {
-        width: calc(100% / 2 - (80px / 2));
+        width: 100%;
         margin: 0 10px;
     }
+
     .hero--card div {
         display: none;
     }
@@ -517,6 +570,10 @@ button.signout {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .offers--container div img {
+        width: 100%;
     }
 
     .card_responsive {
@@ -531,11 +588,23 @@ button.signout {
     .card_responsive button {
         height: 45px;
         width: 100%;
-        background-color: #2baeb7;
-        border-radius: 4px;
-        color: #fff;
+        background-color: var(--button-color);
+        border-radius: var(--button-radius);
+        color: var(--button-color2);
         font-size: 16px;
         border: none;
         margin-top: 32px;
     }
+
+    .header--container > div:nth-child(2) {
+        margin-right: 25px;
+    }
+}
+
+.display {
+    display: flex;
+}
+
+.hidden {
+    display: none;
 }

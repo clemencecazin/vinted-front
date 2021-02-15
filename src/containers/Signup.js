@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -22,6 +23,7 @@ const Signup = ({ setUser }) => {
                         phone: phone,
                         password: password,
                     }
+                    // Envoi des infos avec les clés définit dans le back
                 );
 
                 // setData(response.data);
@@ -48,7 +50,7 @@ const Signup = ({ setUser }) => {
                     placeholder="Nom d'utilisateur"
                     value={username}
                     onChange={(event) => {
-                        console.log(event.target.value);
+                        // console.log(event.target.value);
 
                         setUsername(event.target.value);
                     }}
@@ -59,7 +61,7 @@ const Signup = ({ setUser }) => {
                     placeholder="Email"
                     value={email}
                     onChange={(event) => {
-                        console.log(event.target.value);
+                        // console.log(event.target.value);
 
                         setEmail(event.target.value);
                     }}
@@ -70,7 +72,7 @@ const Signup = ({ setUser }) => {
                     placeholder="Phone"
                     value={phone}
                     onChange={(event) => {
-                        console.log(event.target.value);
+                        // console.log(event.target.value);
 
                         setPhone(event.target.value);
                     }}
@@ -81,7 +83,7 @@ const Signup = ({ setUser }) => {
                     placeholder="Mot de passe"
                     value={password}
                     onChange={(event) => {
-                        console.log(event.target.value);
+                        // console.log(event.target.value);
 
                         setPassword(event.target.value);
                     }}
@@ -89,7 +91,7 @@ const Signup = ({ setUser }) => {
 
                 <button type="submit">Submit</button>
             </form>
-            <a href="/Login">Tu as déjà un compte ? Connecte-toi !</a>
+            <Link to="/Login">Tu as déjà un compte ? Connecte-toi !</Link>
         </div>
     );
 };

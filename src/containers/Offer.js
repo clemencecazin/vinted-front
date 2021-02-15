@@ -5,6 +5,7 @@ import loader from "../assets/loader.png";
 
 const Offer = () => {
     const { id } = useParams();
+    // Param ID
     // console.log(id);
 
     const [data, setData] = useState();
@@ -16,7 +17,10 @@ const Offer = () => {
                 const response = await axios.get(
                     `https://project-vinted.herokuapp.com/offer/${id}`
                 );
-                console.log(response.data);
+
+                // Pour appeler l'offre avec le param ID
+
+                // console.log(response.data);
                 setData(response.data);
                 setIsLoading(false);
             } catch (error) {
@@ -46,9 +50,10 @@ const Offer = () => {
                         <span>{data.product_price} €</span>
 
                         <ul>
-                            {data.product_details.map((elem, index) => {
+                            {data.product_details.map((elem, indexProduct) => {
                                 const keysObj = Object.keys(elem);
-                                console.log(keysObj);
+                                // console.log(keysObj);
+                                // ObjectKeys pour faire apparaitre la clé et la valeur
                                 return (
                                     <li>
                                         <span>{keysObj[0]}</span>
@@ -58,7 +63,7 @@ const Offer = () => {
                             })}
                         </ul>
                     </div>
-                    <div class="separation"></div>
+                    <div className="separation"></div>
                     <div>
                         <p>{data.product_name}</p>
                         <p>{data.product_description}</p>

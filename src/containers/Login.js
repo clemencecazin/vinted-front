@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -23,7 +24,7 @@ const Login = ({ setUser }) => {
                 if (response.data.token) {
                     setUser(response.data.token);
 
-                    console.log(response.data.token);
+                    // console.log(response.data.token);
 
                     history.push("/");
                 }
@@ -51,7 +52,7 @@ const Login = ({ setUser }) => {
                     type="text"
                     placeholder="Adresse email"
                     onChange={(event) => {
-                        console.log(event.target.value);
+                        // console.log(event.target.value);
 
                         setEmail(event.target.value);
                     }}
@@ -61,16 +62,18 @@ const Login = ({ setUser }) => {
                     type="password"
                     placeholder="Mot de passe"
                     onChange={(event) => {
-                        console.log(event.target.value);
+                        // console.log(event.target.value);
 
                         setPassword(event.target.value);
                     }}
                 />
 
                 <button type="submit">Se connecter</button>
-                <span>{errorMessage}</span>
+                <div>{errorMessage}</div>
             </form>
-            <a href="/Login">Tu n'as pas encore de compte ? Inscris-toi !</a>
+            <Link to="/Signup">
+                Tu n'as pas encore de compte ? Inscris-toi !
+            </Link>
         </div>
     );
 };

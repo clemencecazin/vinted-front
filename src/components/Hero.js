@@ -1,4 +1,6 @@
-const Hero = () => {
+import { Link } from "react-router-dom";
+
+const Hero = ({ userToken }) => {
     return (
         <>
             <div className="hero">
@@ -6,7 +8,11 @@ const Hero = () => {
                 <div className="hero--card">
                     <div>
                         Prêts à faire du tri dans vos placards ?
-                        <button>Commencer à vendre</button>
+                        {userToken ? (
+                            <Link to="/publish">Commencer à vendre</Link>
+                        ) : (
+                            <Link to="/login">Commencer à vendre</Link>
+                        )}
                     </div>
                 </div>
             </div>

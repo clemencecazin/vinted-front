@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Login from "./containers/Login";
 import Signup from "./containers/Signup";
 import Hero from "./components/Hero";
+import Publish from "./containers/Publish";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 library.add(faSearch);
@@ -41,6 +42,9 @@ function App() {
                 setData={setData}
             />
             <Switch>
+                <Route path="/publish">
+                    <Publish userToken={userToken} />
+                </Route>
                 <Route path="/offer/:id">
                     <Offer />
                 </Route>
@@ -50,8 +54,9 @@ function App() {
                 <Route path="/signup">
                     <Signup setUser={setUser} />
                 </Route>
+
                 <Route path="/">
-                    <Hero />
+                    <Hero userToken={userToken} />
 
                     <Home data={data} setData={setData} />
                 </Route>

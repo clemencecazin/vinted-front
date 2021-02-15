@@ -10,7 +10,7 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
 
     const search = (event) => {
         const input = event.target.value;
-        console.log(event.target.value);
+        // console.log(event.target.value);
         // console.log(data.offers);
         setresultSearch(input);
     };
@@ -21,16 +21,17 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
                 const response = await axios.get(
                     `https://project-vinted.herokuapp.com/offers/?title=${resultSearch}`
                 );
-
+                // Appel des offres filtrées
                 setData(response.data);
 
-                console.log(response.data);
+                // console.log(response.data);
             } catch (error) {
                 console.log(error.message);
             }
         };
         fetchData();
     }, [resultSearch, setData]);
+    // Valeurs appelés, resultSearch et setData
 
     return (
         <header>
@@ -63,6 +64,9 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
                         >
                             Se déconnecter
                         </button>
+                        <Link to="/Publish" className="header--button-sold">
+                            Vends tes articles
+                        </Link>
                     </>
                 ) : (
                     <>
@@ -80,10 +84,16 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
                                 S'inscrire
                             </Link>
                         </div>
-
-                        <button className="header--button-sold">
+                        {/* Si l'user est idenitifié (reconnue grâce au token alors j'accède à la page publish sinon login*/}
+                        <Link to="/Login" className="header--button-sold">
                             Vends tes articles
-                        </button>
+                        </Link>
+
+                        <div className="menu_responsive">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
                     </>
                 )}
             </div>
