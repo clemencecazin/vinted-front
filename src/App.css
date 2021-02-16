@@ -256,7 +256,7 @@ button.signout {
 }
 .bg-offers {
     background-color: #eaedee;
-    height: 100%;
+    height: 100vh;
 }
 
 .offers .offers-picture {
@@ -604,8 +604,66 @@ img.preview {
     }
 }
 
+/*PAYMENT*/
+.bg-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eaedee;
+    height: 100vh;
+}
+
+.checkout {
+    margin: auto;
+    max-width: 600px;
+    padding: 36px 20px;
+    background-color: #fff;
+}
+
+.checkout p:first-child {
+    font-size: 14px;
+    color: #999;
+    padding-bottom: 24px;
+}
+
 .card_responsive {
     display: none;
+}
+
+.cardElement {
+    margin: 10px 0 20px;
+    padding: 10px 14px;
+    font-size: 1em;
+    font-family: "Source Code Pro", monospace;
+    box-shadow: 0 1px 3px rgb(50 50 93 / 15%), 0 1px 0 rgb(0 0 0 / 2%);
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.checkout button {
+    margin-top: 8px;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 22px;
+    height: 44px;
+    padding: 0 14px;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 4px;
+    background: #00c06d;
+    border-color: #00c06d;
+    cursor: pointer;
+}
+
+span.success {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    font-weight: bold;
+    color: #00c06d;
 }
 
 /* RESPONSIVE */

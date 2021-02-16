@@ -34,7 +34,7 @@ const CheckoutForm = ({ description, price }) => {
             );
             console.log(response.status);
             if (response.status === 200) {
-                setSucceeded("Paiement validé !");
+                setSucceeded("Paiement validé ! Merci pour votre commande !");
             }
             console.log(response.status);
         } catch (error) {
@@ -42,15 +42,24 @@ const CheckoutForm = ({ description, price }) => {
         }
     };
     return (
-        <div>
+        <div className="checkout">
             <form onSubmit={handleSubmit}>
-                {price}
+                <p>Résumé de la commande</p>
+                <div>
+                    <span>Commande : </span>
+                    <span>{price} €</span>
+                </div>
 
-                {description}
-                <CardElement />
+                <p>
+                    Il ne vous reste plus qu'une étape pour vous offrir
+                    <strong> {description}</strong>. Vous allez payer
+                    <strong> {price} €</strong>
+                </p>
+
+                <CardElement className="cardElement" />
                 <button type="submit">Acheter</button>
             </form>
-            <span>{succeeded}</span>
+            <span className="success">{succeeded}</span>
         </div>
     );
 };

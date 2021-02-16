@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Login = ({ setUser }) => {
     const [email, setEmail] = useState();
@@ -9,6 +9,7 @@ const Login = ({ setUser }) => {
     const [errorMessage, setErrorMessage] = useState("");
 
     const history = useHistory();
+    const location = useLocation();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -26,7 +27,11 @@ const Login = ({ setUser }) => {
 
                     // console.log(response.data.token);
 
-                    history.push("/");
+                    history.push(
+                        location.state && location.state.fromPublish
+                            ? "/publish"
+                            : "/"
+                    );
                 }
             } catch (error) {
                 console.log(error);

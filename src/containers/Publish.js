@@ -62,11 +62,22 @@ const Publish = ({ userToken }) => {
                         <div>
                             {/* Preview de la photo chargée */}
                             {preview ? (
-                                <img
-                                    className="preview"
-                                    src={preview}
-                                    alt="product"
-                                />
+                                <>
+                                    <img
+                                        className="preview"
+                                        src={preview}
+                                        alt="product"
+                                    />
+                                    <label
+                                        htmlFor="file"
+                                        className="label-file"
+                                    >
+                                        <span>
+                                            <FontAwesomeIcon icon="plus" />
+                                        </span>
+                                        <span>Modifier la photo</span>
+                                    </label>
+                                </>
                             ) : (
                                 <label htmlFor="file" className="label-file">
                                     <span>
@@ -192,7 +203,7 @@ const Publish = ({ userToken }) => {
             </div>
         </div>
     ) : (
-        <Redirect to="/login" />
+        <Redirect to={{ pathname: "/login", state: { fromPublish: true } }} />
     );
 };
 

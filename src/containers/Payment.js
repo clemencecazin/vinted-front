@@ -17,7 +17,7 @@ const Payment = ({ userToken }) => {
     console.log(location.state.product_description);
 
     return userToken ? (
-        <div>
+        <div className="bg-payment">
             <Elements stripe={stripePromise}>
                 <CheckoutForm
                     description={location.state.product_description}

@@ -8,6 +8,7 @@ const Signup = ({ setUser }) => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const history = useHistory();
 
@@ -34,6 +35,12 @@ const Signup = ({ setUser }) => {
                 }
             } catch (error) {
                 console.log(error);
+                setErrorMessage(
+                    <div>Le formulaire n'est pas bien rempli !</div>
+                );
+                if (error.response) {
+                    console.log(error.response.message);
+                }
             }
         };
         fetchData();
@@ -90,6 +97,7 @@ const Signup = ({ setUser }) => {
                 />
 
                 <button type="submit">Submit</button>
+                <div>{errorMessage}</div>
             </form>
             <Link to="/Login">Tu as déjà un compte ? Connecte-toi !</Link>
         </div>
