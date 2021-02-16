@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Publish = ({ userToken }) => {
     const [file, setFile] = useState();
@@ -49,141 +50,186 @@ const Publish = ({ userToken }) => {
         }
     };
     return (
-        <div className="publish-container">
-            <div className={form}>
-                <form onSubmit={handleSubmit}>
+        <div className="bg-offers">
+            <div className="publish-container">
+                <form className={form} onSubmit={handleSubmit}>
                     <h2>Vends ton article</h2>
 
-                    <input
-                        type="file"
-                        onChange={(event) => {
-                            // console.log(event);
-                            setFile(event.target.files[0]);
-                        }}
-                    />
-                    <label>Titre</label>
-                    <input
-                        type="text"
-                        placeholder="Titre"
-                        onChange={(event) => {
-                            setTitle(event.target.value);
-                        }}
-                    />
-                    <label>Description</label>
-                    <input
-                        type="text"
-                        placeholder="Description"
-                        onChange={(event) => {
-                            setDescription(event.target.value);
-                        }}
-                    />
+                    <div className="form--file">
+                        <div>
+                            <label htmlFor="file" className="label-file">
+                                <span>
+                                    <FontAwesomeIcon icon="plus" />
+                                </span>
+                                <span>Ajouter une photo</span>
+                            </label>
+                            <input
+                                id="file"
+                                className="input-file"
+                                type="file"
+                                onChange={(event) => {
+                                    // console.log(event);
+                                    setFile(event.target.files[0]);
+                                }}
+                            />
+                        </div>
+                    </div>
+                    <div className="text--form">
+                        <div>
+                            <label>Titre</label>
 
-                    <label>Marque</label>
-                    <input
-                        type="text"
-                        placeholder="Marque"
-                        onChange={(event) => {
-                            setBrand(event.target.value);
-                        }}
-                    />
-                    <label>Taille</label>
-                    <input
-                        type="text"
-                        placeholder="Taille"
-                        onChange={(event) => {
-                            setSize(event.target.value);
-                        }}
-                    />
-                    <label>Couleur</label>
-                    <input
-                        type="text"
-                        placeholder="Couleur"
-                        onChange={(event) => {
-                            setColor(event.target.value);
-                        }}
-                    />
-                    <label>Etat</label>
-                    <input
-                        type="text"
-                        placeholder="Etat"
-                        onChange={(event) => {
-                            setCondition(event.target.value);
-                        }}
-                    />
-                    <label>Lieu</label>
-                    <input
-                        type="text"
-                        placeholder="Lieu"
-                        onChange={(event) => {
-                            setCity(event.target.value);
-                        }}
-                    />
+                            <input
+                                type="text"
+                                placeholder="Titre"
+                                onChange={(event) => {
+                                    setTitle(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <label>Description</label>
+                            <textarea
+                                type="text"
+                                placeholder="Description"
+                                onChange={(event) => {
+                                    setDescription(event.target.value);
+                                }}
+                            />
+                        </div>
+                    </div>
 
-                    <label>Prix</label>
-                    <input
-                        type="text"
-                        placeholder="Prix"
-                        onChange={(event) => {
-                            setPrice(event.target.value);
-                        }}
-                    />
+                    <div className="text--form">
+                        <div>
+                            <label>Marque</label>
+                            <input
+                                type="text"
+                                placeholder="Marque"
+                                onChange={(event) => {
+                                    setBrand(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <label>Taille</label>
+                            <input
+                                type="text"
+                                placeholder="Taille"
+                                onChange={(event) => {
+                                    setSize(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <label>Couleur</label>
+                            <input
+                                type="text"
+                                placeholder="Couleur"
+                                onChange={(event) => {
+                                    setColor(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <label>Etat</label>
+                            <input
+                                type="text"
+                                placeholder="Etat"
+                                onChange={(event) => {
+                                    setCondition(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div>
+                            <label>Lieu</label>
+                            <input
+                                type="text"
+                                placeholder="Lieu"
+                                onChange={(event) => {
+                                    setCity(event.target.value);
+                                }}
+                            />
+                        </div>
+                    </div>
 
-                    <button type="submit">Ajouter</button>
+                    <div className="text--form">
+                        <div>
+                            <label>Prix</label>
+
+                            <input
+                                type="text"
+                                placeholder="Prix"
+                                onChange={(event) => {
+                                    setPrice(event.target.value);
+                                }}
+                            />
+                        </div>
+                        {/* <div className="checkbox">
+                            <input type="checkbox" />
+                            Je suis intéressé(e) par les échanges
+                        </div> */}
+                    </div>
+                    <div className="publish-button">
+                        <button type="submit">Ajouter</button>
+                    </div>
                 </form>
-            </div>
 
-            {isLoading ? (
-                <p>...</p>
-            ) : (
-                <>
-                    <div className="bg-offers">
-                        <div className="offers--container offers">
-                            <div className="offers-picture">
-                                <img
-                                    src={data.product_image.secure_url}
-                                    alt={data.product_name}
-                                />
-                            </div>
-
-                            <div className="offers--infos">
-                                <div>
-                                    <span>{data.product_price} €</span>
-
-                                    <ul>
-                                        {data.product_details.map(
-                                            (elem, index) => {
-                                                const keysObj = Object.keys(
-                                                    elem
-                                                );
-
-                                                return (
-                                                    <li>
-                                                        <span>
-                                                            {keysObj[0]}
-                                                        </span>
-                                                        <span>
-                                                            {elem[keysObj[0]]}
-                                                        </span>
-                                                    </li>
-                                                );
-                                            }
-                                        )}
-                                    </ul>
+                {isLoading ? (
+                    <p>...</p>
+                ) : (
+                    <>
+                        <div className="bg-offers">
+                            <div className="offers--container offers">
+                                <div className="offers-picture">
+                                    <img
+                                        src={data.product_image.secure_url}
+                                        alt={data.product_name}
+                                    />
                                 </div>
-                                <div className="separation"></div>
-                                <div>
-                                    <p>{data.product_name}</p>
-                                    <p>{data.product_description}</p>
 
-                                    <div>{data.owner.account.username}</div>
+                                <div className="offers--infos">
+                                    <div>
+                                        <span>{data.product_price} €</span>
 
-                                    <button>Acheter</button>
+                                        <ul>
+                                            {data.product_details.map(
+                                                (elem, index) => {
+                                                    const keysObj = Object.keys(
+                                                        elem
+                                                    );
+
+                                                    return (
+                                                        <li>
+                                                            <span>
+                                                                {keysObj[0]}
+                                                            </span>
+                                                            <span>
+                                                                {
+                                                                    elem[
+                                                                        keysObj[0]
+                                                                    ]
+                                                                }
+                                                            </span>
+                                                        </li>
+                                                    );
+                                                }
+                                            )}
+                                        </ul>
+                                    </div>
+                                    <div className="separation"></div>
+                                    <div>
+                                        <p>{data.product_name}</p>
+                                        <p>{data.product_description}</p>
+
+                                        <div>{data.owner.account.username}</div>
+
+                                        <button>Acheter</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </>
-            )}
+                    </>
+                )}
+            </div>
         </div>
     );
 };

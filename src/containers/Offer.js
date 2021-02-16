@@ -55,7 +55,7 @@ const Offer = () => {
                                 // console.log(keysObj);
                                 // ObjectKeys pour faire apparaitre la clé et la valeur
                                 return (
-                                    <li>
+                                    <li key={indexProduct}>
                                         <span>{keysObj[0]}</span>
                                         <span>{elem[keysObj[0]]}</span>
                                     </li>

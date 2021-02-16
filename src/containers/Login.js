@@ -31,7 +31,7 @@ const Login = ({ setUser }) => {
             } catch (error) {
                 console.log(error);
                 setErrorMessage(
-                    "Le mail ou/et le mot de passe n'est pas correct"
+                    <div>Le mail ou/et le mot de passe n'est pas correct</div>
                 );
                 if (error.response) {
                     console.log(error.response.message);

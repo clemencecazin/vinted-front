@@ -10,8 +10,8 @@ import Signup from "./containers/Signup";
 import Hero from "./components/Hero";
 import Publish from "./containers/Publish";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch);
+import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faPlus);
 
 function App() {
     const [data, setData] = useState();

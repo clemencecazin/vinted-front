@@ -1,18 +1,33 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-import Filter from "./Filter";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = ({ userToken, setUser, data, setData, owner }) => {
     const [resultSearch, setresultSearch] = useState();
+    const [navResp, setNavResp] = useState();
+
+    const menu = () => {
+        setNavResp(
+            <div className="menu-responsive--inside">
+                <button
+                    onClick={() => {
+                        setNavResp(<div className="hidden"></div>);
+                    }}
+                >
+                    X
+                </button>
+                En chantier ! Bientôt ! 🚀🚀🚀
+            </div>
+        );
+    };
 
     const search = (event) => {
         const input = event.target.value;
         // console.log(event.target.value);
         // console.log(data.offers);
-        setresultSearch(input);
+        setresultSearch(input); // Stocke ce qui est tapé dans la barre de recherche
     };
 
     useEffect(() => {
@@ -51,13 +66,10 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
                     <span className="search-input-icon">
                         <FontAwesomeIcon icon="search" />
                     </span>
-                    <Filter />
                 </div>
 
                 {userToken ? (
                     <>
-                        <span>Bonjour</span>
-
                         <button
                             className="signout"
                             onClick={() => setUser(null)}
@@ -88,12 +100,25 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
                         <Link to="/Login" className="header--button-sold">
                             Vends tes articles
                         </Link>
+                    </>
+                )}
 
-                        <div className="menu_responsive">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
+                <div
+                    onClick={() => {
+                        menu();
+                    }}
+                    className="menu_responsive"
+                >
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+
+                {userToken ? (
+                    <div>{navResp}</div>
+                ) : (
+                    <>
+                        <div>{navResp}</div>
                     </>
                 )}
             </div>

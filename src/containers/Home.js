@@ -34,8 +34,8 @@ const Home = ({ data, setData }) => {
             {data.offers.map((offer, index) => {
                 // console.log(offers);
                 return (
-                    <div className="offers--container--product">
-                        <Link key={offer._id} to={`/offer/${offer._id}`}>
+                    <div key={offer._id} className="offers--container--product">
+                        <Link to={`/offer/${offer._id}`}>
                             <div className="owner">
                                 <div>
                                     <span>{offer.owner.account.username}</span>
@@ -79,7 +79,7 @@ const Home = ({ data, setData }) => {
                                     {offer.product_details.map(
                                         (details, indeximg) => {
                                             return (
-                                                <div>
+                                                <div key={indeximg}>
                                                     <span>
                                                         {details.MARQUE}
                                                     </span>

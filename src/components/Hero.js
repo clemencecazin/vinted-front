@@ -19,7 +19,11 @@ const Hero = ({ userToken }) => {
 
             <div className="card_responsive">
                 Prêts à faire du tri dans vos placards ?
-                <button>Commencer à vendre</button>
+                {userToken ? (
+                    <Link to="/publish">Commencer à vendre</Link>
+                ) : (
+                    <Link to="/login">Commencer à vendre</Link>
+                )}
             </div>
         </>
     );
