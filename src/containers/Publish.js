@@ -46,7 +46,7 @@ const Publish = ({ userToken }) => {
                 console.log(response.data._id);
 
                 history.push(`/offer/${response.data._id}`);
-            }
+            } // Une fois l'offre publier SI ID renvoyer vers l'offre avec vet ID
             console.log(response.data);
         } catch (error) {
             console.log(error.message);

@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import loader from "../assets/loader.png";
 
-const Offer = () => {
+const Offer = ({ userToken }) => {
     const { id } = useParams();
     // Param ID
     // console.log(id);
@@ -22,6 +22,7 @@ const Offer = () => {
 
                 // console.log(response.data);
                 setData(response.data);
+
                 setIsLoading(false);
             } catch (error) {
                 console.log(error.message);
@@ -70,7 +71,9 @@ const Offer = () => {
 
                         <div>{data.owner.account.username}</div>
 
-                        <button>Acheter</button>
+                        <Link to={{ pathname: "/payment", state: data }}>
+                            Acheter
+                        </Link>
                         {/* <div>
                 <img
                     src={data.owner.account.avatar.secure_url}

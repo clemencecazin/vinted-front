@@ -9,6 +9,7 @@ import Login from "./containers/Login";
 import Signup from "./containers/Signup";
 import Hero from "./components/Hero";
 import Publish from "./containers/Publish";
+import Payment from "./containers/Payment";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
 library.add(faSearch, faPlus);
@@ -53,6 +54,9 @@ function App() {
                 </Route>
                 <Route path="/signup">
                     <Signup setUser={setUser} />
+                </Route>
+                <Route path="/payment">
+                    <Payment userToken={userToken} />
                 </Route>
 
                 <Route path="/">
