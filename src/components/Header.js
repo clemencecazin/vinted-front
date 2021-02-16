@@ -97,7 +97,7 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
                             </Link>
                         </div>
                         {/* Si l'user est idenitifié (reconnue grâce au token alors j'accède à la page publish sinon login*/}
-                        <Link to="/Login" className="header--button-sold">
+                        <Link to="/Publish" className="header--button-sold">
                             Vends tes articles
                         </Link>
                     </>

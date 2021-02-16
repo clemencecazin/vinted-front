@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Redirect, useHistory } from "react-router-dom";
 
 const Publish = ({ userToken }) => {
     const [file, setFile] = useState();
@@ -12,9 +13,9 @@ const Publish = ({ userToken }) => {
     const [condition, setCondition] = useState("");
     const [city, setCity] = useState("");
     const [price, setPrice] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
-    const [data, setData] = useState();
-    const [form, setForm] = useState("display");
+    const [preview, setPreview] = useState();
+
+    const history = useHistory();
 
     const handleSubmit = async (event) => {
         try {
@@ -38,31 +39,42 @@ const Publish = ({ userToken }) => {
                     headers: {
                         authorization: `Bearer ${userToken}`,
                     },
-                } // Paramètres pris en compte
+                } // Arguments pris en compte
             );
-            console.log(response.data);
-            setData(response.data); // On stock le résultat pour pouvoir renvoyer les éléments dans la page
-            setIsLoading(false);
 
-            setForm("hidden");
+            if (response.data._id) {
+                console.log(response.data._id);
+
+                history.push(`/offer/${response.data._id}`);
+            }
+            console.log(response.data);
         } catch (error) {
             console.log(error.message);
         }
     };
-    return (
+    return userToken ? (
         <div className="bg-offers">
             <div className="publish-container">
-                <form className={form} onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <h2>Vends ton article</h2>
 
                     <div className="form--file">
                         <div>
-                            <label htmlFor="file" className="label-file">
-                                <span>
-                                    <FontAwesomeIcon icon="plus" />
-                                </span>
-                                <span>Ajouter une photo</span>
-                            </label>
+                            {/* Preview de la photo chargée */}
+                            {preview ? (
+                                <img
+                                    className="preview"
+                                    src={preview}
+                                    alt="product"
+                                />
+                            ) : (
+                                <label htmlFor="file" className="label-file">
+                                    <span>
+                                        <FontAwesomeIcon icon="plus" />
+                                    </span>
+                                    <span>Ajouter une photo</span>
+                                </label>
+                            )}
                             <input
                                 id="file"
                                 className="input-file"
@@ -70,6 +82,11 @@ const Publish = ({ userToken }) => {
                                 onChange={(event) => {
                                     // console.log(event);
                                     setFile(event.target.files[0]);
+                                    setPreview(
+                                        URL.createObjectURL(
+                                            event.target.files[0]
+                                        )
+                                    );
                                 }}
                             />
                         </div>
@@ -172,65 +189,10 @@ const Publish = ({ userToken }) => {
                         <button type="submit">Ajouter</button>
                     </div>
                 </form>
-
-                {isLoading ? (
-                    <p>...</p>
-                ) : (
-                    <>
-                        <div className="bg-offers">
-                            <div className="offers--container offers">
-                                <div className="offers-picture">
-                                    <img
-                                        src={data.product_image.secure_url}
-                                        alt={data.product_name}
-                                    />
-                                </div>
-
-                                <div className="offers--infos">
-                                    <div>
-                                        <span>{data.product_price} €</span>
-
-                                        <ul>
-                                            {data.product_details.map(
-                                                (elem, index) => {
-                                                    const keysObj = Object.keys(
-                                                        elem
-                                                    );
-
-                                                    return (
-                                                        <li>
-                                                            <span>
-                                                                {keysObj[0]}
-                                                            </span>
-                                                            <span>
-                                                                {
-                                                                    elem[
-                                                                        keysObj[0]
-                                                                    ]
-                                                                }
-                                                            </span>
-                                                        </li>
-                                                    );
-                                                }
-                                            )}
-                                        </ul>
-                                    </div>
-                                    <div className="separation"></div>
-                                    <div>
-                                        <p>{data.product_name}</p>
-                                        <p>{data.product_description}</p>
-
-                                        <div>{data.owner.account.username}</div>
-
-                                        <button>Acheter</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </>
-                )}
             </div>
         </div>
+    ) : (
+        <Redirect to="/login" />
     );
 };
 
