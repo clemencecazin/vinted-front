@@ -74,6 +74,8 @@ const Offer = ({ userToken }) => {
                         <Link to={{ pathname: "/payment", state: data }}>
                             Acheter
                         </Link>
+
+                        {/* Je me dirige vers cette page en envoyant ces informations */}
                         {/* <div>
                 <img
                     src={data.owner.account.avatar.secure_url}

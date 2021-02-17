@@ -694,6 +694,7 @@ span.success {
 
     .offers .offers--infos {
         width: 100%;
+        margin-top: 30px;
     }
 
     .offers .offers-picture {

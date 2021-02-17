@@ -7,23 +7,27 @@ const CheckoutForm = ({ description, price }) => {
     const elements = useElements();
 
     const [succeeded, setSucceeded] = useState("");
+    const [disabled, setDisabled] = useState(false);
 
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
 
+            setDisabled(true);
+
             // Récup les données bancaire saisies
             const cardElements = elements.getElement(CardElement);
 
-            //Requête à l'API Stripe pour avoir le token
+            // Requête à l'API Stripe pour envoyer les infos et récupérer le token
             const stripeResponse = await stripe.createToken(cardElements, {
                 name: "l'id de l'acheteur",
-            });
+            }); // Faire un Cookie.get de l'ID du user
             console.log(stripeResponse);
             console.log(stripeResponse.token.id);
 
             const stripeToken = stripeResponse.token.id;
 
+            // Requête à l'API pour effectuer la transaction
             const response = await axios.post(
                 "https://project-vinted.herokuapp.com/payment",
                 {
@@ -33,9 +37,12 @@ const CheckoutForm = ({ description, price }) => {
                 }
             );
             console.log(response.status);
+
+            // Si c'est OK
             if (response.status === 200) {
                 setSucceeded("Paiement validé ! Merci pour votre commande !");
             }
+
             console.log(response.status);
         } catch (error) {
             console.log(error.message);
@@ -57,7 +64,9 @@ const CheckoutForm = ({ description, price }) => {
                 </p>
 
                 <CardElement className="cardElement" />
-                <button type="submit">Acheter</button>
+                <button disabled={disabled} type="submit">
+                    Acheter
+                </button>
             </form>
             <span className="success">{succeeded}</span>
         </div>

@@ -10,7 +10,7 @@ const stripePromise = loadStripe(
 ); // Clé public pour accéder à Stripe
 
 const Payment = ({ userToken }) => {
-    const location = useLocation();
+    const location = useLocation(); // appelle la data envoyé dans le Link de la page Offer
 
     console.log(location);
 
@@ -22,6 +22,7 @@ const Payment = ({ userToken }) => {
                 <CheckoutForm
                     description={location.state.product_description}
                     price={location.state.product_price}
+                    // {...location} pour envoyer toutes les infos
                 />
             </Elements>
         </div>
