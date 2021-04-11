@@ -20,19 +20,20 @@ function App() {
     const [userToken, setUserToken] = useState(
         Cookies.get("userToken") || null
     );
-    // GET pour garder l'userToken en mémoire si il y en a un
+
+    // GET to keep userToken in memory, if there is one
 
     const setUser = (token) => {
         if (token) {
             Cookies.set("userToken", token, { expires: 2 });
-            // Quand on clique le cookie se crée et le state de setUserToken prend le token
+            // OnCLick, the cookie, is created with his expiration date
             setUserToken(token);
         } else {
+            // If no token, we remove userToken to disconnect
             Cookies.remove("userToken");
             setUserToken(null);
         }
     };
-    // On crée une fonction qui prend le token. Si il y a token, on crée le cookie, durée, sinon remove userToken pour déconnecter
 
     return (
         <Router>

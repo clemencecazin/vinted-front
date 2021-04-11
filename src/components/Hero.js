@@ -17,6 +17,8 @@ const Hero = ({ userToken }) => {
                 </div>
             </div>
 
+            {/* RESPONSIVE */}
+
             <div className="card_responsive">
                 Prêts à faire du tri dans vos placards ?
                 {userToken ? (

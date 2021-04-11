@@ -21,11 +21,9 @@ const Login = ({ setUser }) => {
                     { email: email, password: password }
                 );
 
-                // console.log(response.data);
+                // If Token send back to Publish else send back to Home
                 if (response.data.token) {
                     setUser(response.data.token);
-
-                    // console.log(response.data.token);
 
                     history.push(
                         location.state && location.state.fromPublish
@@ -51,14 +49,14 @@ const Login = ({ setUser }) => {
 
     return (
         <div className="signup-container">
+            {/* Formulaire de connexion */}
+
             <h2>Se connecter</h2>
             <form className="form" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Adresse email"
                     onChange={(event) => {
-                        // console.log(event.target.value);
-
                         setEmail(event.target.value);
                     }}
                 />
@@ -67,8 +65,6 @@ const Login = ({ setUser }) => {
                     type="password"
                     placeholder="Mot de passe"
                     onChange={(event) => {
-                        // console.log(event.target.value);
-
                         setPassword(event.target.value);
                     }}
                 />

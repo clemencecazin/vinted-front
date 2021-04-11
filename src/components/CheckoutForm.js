@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const CheckoutForm = ({ description, price }) => {
     const stripe = useStripe();
@@ -50,7 +51,15 @@ const CheckoutForm = ({ description, price }) => {
     };
     return (
         <div className="checkout">
-            <form onSubmit={handleSubmit}>
+            <Link to="/" className="header--button-login-signup">
+                Retour aux offres
+            </Link>
+            <form
+                style={{
+                    display: succeeded !== "" && "none",
+                }}
+                onSubmit={handleSubmit}
+            >
                 <p>Résumé de la commande</p>
                 <div>
                     <span>Commande : </span>
@@ -64,10 +73,12 @@ const CheckoutForm = ({ description, price }) => {
                 </p>
 
                 <CardElement className="cardElement" />
+
                 <button disabled={disabled} type="submit">
                     Acheter
                 </button>
             </form>
+
             <span className="success">{succeeded}</span>
         </div>
     );

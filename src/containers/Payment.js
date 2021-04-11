@@ -7,14 +7,10 @@ import { useLocation } from "react-router-dom";
 
 const stripePromise = loadStripe(
     "pk_test_51ILRufFonkUVsR7aIFB5qP8qFhZVmZsu5EJn1YLFl4RG8WhyfpkxiKxk9JbCHIni0ukndV79wTXFuYz2nlOtZGh300m71jUjjO"
-); // Clé public pour accéder à Stripe
+); // Public key to access to Stripe
 
 const Payment = ({ userToken }) => {
-    const location = useLocation(); // appelle la data envoyé dans le Link de la page Offer
-
-    console.log(location);
-
-    console.log(location.state.product_description);
+    const location = useLocation(); // Call datas send in the offer link "Acheter"
 
     return userToken ? (
         <div className="bg-payment">
@@ -22,7 +18,7 @@ const Payment = ({ userToken }) => {
                 <CheckoutForm
                     description={location.state.product_description}
                     price={location.state.product_price}
-                    // {...location} pour envoyer toutes les infos
+                    // {...location} to send all the informations
                 />
             </Elements>
         </div>

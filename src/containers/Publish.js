@@ -21,9 +21,9 @@ const Publish = ({ userToken }) => {
         try {
             event.preventDefault();
 
-            const formData = new FormData(); // Nouvel Objet
-            formData.append("picture", file);
-            formData.append("title", title); // Name Back et value
+            const formData = new FormData(); // New Object
+            formData.append("picture", file); // Name Back et value
+            formData.append("title", title);
             formData.append("description", description);
             formData.append("brand", brand);
             formData.append("size", size);
@@ -43,11 +43,9 @@ const Publish = ({ userToken }) => {
             );
 
             if (response.data._id) {
-                console.log(response.data._id);
-
+                // Once the offer published, if ID : Send back to the offer with ID
                 history.push(`/offer/${response.data._id}`);
             } // Une fois l'offre publier SI ID renvoyer vers l'offre avec vet ID
-            console.log(response.data);
         } catch (error) {
             console.log(error.message);
         }
@@ -60,7 +58,7 @@ const Publish = ({ userToken }) => {
 
                     <div className="form--file">
                         <div>
-                            {/* Preview de la photo chargée */}
+                            {/* Preview of the photo */}
                             {preview ? (
                                 <>
                                     <img
@@ -91,7 +89,6 @@ const Publish = ({ userToken }) => {
                                 className="input-file"
                                 type="file"
                                 onChange={(event) => {
-                                    // console.log(event);
                                     setFile(event.target.files[0]);
                                     setPreview(
                                         URL.createObjectURL(
@@ -102,6 +99,8 @@ const Publish = ({ userToken }) => {
                             />
                         </div>
                     </div>
+
+                    {/* Form for offers */}
                     <div className="text--form">
                         <div>
                             <label>Titre</label>
@@ -191,10 +190,6 @@ const Publish = ({ userToken }) => {
                                 }}
                             />
                         </div>
-                        {/* <div className="checkbox">
-                            <input type="checkbox" />
-                            Je suis intéressé(e) par les échanges
-                        </div> */}
                     </div>
                     <div className="publish-button">
                         <button type="submit">Ajouter</button>
@@ -203,6 +198,7 @@ const Publish = ({ userToken }) => {
             </div>
         </div>
     ) : (
+        // If the User is not connected redirect to login
         <Redirect to={{ pathname: "/login", state: { fromPublish: true } }} />
     );
 };

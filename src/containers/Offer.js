@@ -1,12 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import loader from "../assets/loader.png";
+import Loader from "../components/Loader";
 
 const Offer = ({ userToken }) => {
     const { id } = useParams();
     // Param ID
-    // console.log(id);
 
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -18,9 +17,8 @@ const Offer = ({ userToken }) => {
                     `https://project-vinted.herokuapp.com/offer/${id}`
                 );
 
-                // Pour appeler l'offre avec le param ID
+                // Call the offer with param ID
 
-                // console.log(response.data);
                 setData(response.data);
 
                 setIsLoading(false);
@@ -32,10 +30,7 @@ const Offer = ({ userToken }) => {
     }, [id]);
 
     return isLoading ? (
-        <div className="loader">
-            <img src={loader} alt="loader" />
-            <p>En cours de chargement...</p>
-        </div>
+        <Loader />
     ) : (
         <div className="bg-offers">
             <div className="offers--container offers">
@@ -53,7 +48,7 @@ const Offer = ({ userToken }) => {
                         <ul>
                             {data.product_details.map((elem, indexProduct) => {
                                 const keysObj = Object.keys(elem);
-                                // console.log(keysObj);
+
                                 // ObjectKeys pour faire apparaitre la clé et la valeur
                                 return (
                                     <li key={indexProduct}>
@@ -71,17 +66,11 @@ const Offer = ({ userToken }) => {
 
                         <div>{data.owner.account.username}</div>
 
+                        {/* Send to payment page with informations */}
+
                         <Link to={{ pathname: "/payment", state: data }}>
                             Acheter
                         </Link>
-
-                        {/* Je me dirige vers cette page en envoyant ces informations */}
-                        {/* <div>
-                <img
-                    src={data.owner.account.avatar.secure_url}
-                    alt={data.owner.account.username}
-                />
-            </div> */}
                     </div>
                 </div>
             </div>

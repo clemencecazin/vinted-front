@@ -6,28 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = ({ userToken, setUser, data, setData, owner }) => {
     const [resultSearch, setresultSearch] = useState();
-    const [navResp, setNavResp] = useState();
-
-    const menu = () => {
-        setNavResp(
-            <div className="menu-responsive--inside">
-                <button
-                    onClick={() => {
-                        setNavResp(<div className="hidden"></div>);
-                    }}
-                >
-                    X
-                </button>
-                En chantier ! Bientôt ! 🚀🚀🚀
-            </div>
-        );
-    };
 
     const search = (event) => {
         const input = event.target.value;
-        // console.log(event.target.value);
-        // console.log(data.offers);
-        setresultSearch(input); // Stocke ce qui est tapé dans la barre de recherche
+
+        setresultSearch(input); // Stock data
     };
 
     useEffect(() => {
@@ -36,17 +19,15 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
                 const response = await axios.get(
                     `https://project-vinted.herokuapp.com/offers/?title=${resultSearch}`
                 );
-                // Appel des offres filtrées
+                // Calling the filters offers
                 setData(response.data);
-
-                // console.log(response.data);
             } catch (error) {
                 console.log(error.message);
             }
         };
         fetchData();
     }, [resultSearch, setData]);
-    // Valeurs appelés, resultSearch et setData
+    // Value called, resultSearch and setData
 
     return (
         <header>
@@ -96,34 +77,16 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
                                 S'inscrire
                             </Link>
                         </div>
-                        {/* Si l'user est idenitifié (reconnue grâce au token alors j'accède à la page publish sinon login*/}
+
+                        {/* If the user is identified thanks to the Token, access to publish page else login */}
+
                         <Link to="/Publish" className="header--button-sold">
                             Vends tes articles
                         </Link>
                     </>
                 )}
-
-                <div
-                    onClick={() => {
-                        menu();
-                    }}
-                    className="menu_responsive"
-                >
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-
-                {userToken ? (
-                    <div>{navResp}</div>
-                ) : (
-                    <>
-                        <div>{navResp}</div>
-                    </>
-                )}
             </div>
         </header>
-        // Si on a un userToken le bouton se Déconnecter apparait sinon c'est Se connecter et s'inscrire
     );
 };
 

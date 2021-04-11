@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import loader from "../assets/loader.png";
+import Loader from "../components/Loader";
 
 const Home = ({ data, setData }) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +13,7 @@ const Home = ({ data, setData }) => {
                     "https://project-vinted.herokuapp.com/offers"
                 );
                 setData(response.data);
-                // console.log(response.data);
+
                 setIsLoading(false);
             } catch (error) {
                 console.log(error.message);
@@ -22,17 +22,11 @@ const Home = ({ data, setData }) => {
         fetchData();
     }, [setData]);
 
-    // console.log(data);
-
     return isLoading ? (
-        <div className="loader">
-            <img src={loader} alt="loader" />
-            <p>En cours de chargement...</p>
-        </div>
+        <Loader />
     ) : (
         <div className="offers--container">
             {data.offers.map((offer, index) => {
-                // console.log(offers);
                 return (
                     <div key={offer._id} className="offers--container--product">
                         <Link to={`/offer/${offer._id}`}>
@@ -60,20 +54,7 @@ const Home = ({ data, setData }) => {
                                 />
                             </div>
                             <div>
-                                {/* {offer._id} */}
                                 <span>{offer.product_price} €</span>
-                                {/* <div>
-                                    {offer.product_pictures.map(
-                                        (imagesrc, indeximg) => {
-                                            return (
-                                                <img
-                                                    src={imagesrc.secure_url}
-                                                    alt={offer.product_name}
-                                                />
-                                            );
-                                        }
-                                    )}
-                                </div> */}
 
                                 <div>
                                     {offer.product_details.map(

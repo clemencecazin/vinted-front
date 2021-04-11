@@ -24,11 +24,8 @@ const Signup = ({ setUser }) => {
                         phone: phone,
                         password: password,
                     }
-                    // Envoi des infos avec les clés définit dans le back
+                    // Send the informations to DB
                 );
-
-                // setData(response.data);
-                // console.log(response.data);
                 if (response.data.token) {
                     setUser(response.data.token);
                     history.push("/");
@@ -46,7 +43,7 @@ const Signup = ({ setUser }) => {
         fetchData();
     };
 
-    // Au clic on fait appelle à l'API signup et on lui passe les informations du formulaire, on passe le token dans la fonction setUser, pour qu'elle garde le token en mémoire
+    // OnClick we are calling the API signup, pass all the informations from the form. Save the token in setUser function to keep him in memory.
 
     return (
         <div className="signup-container">
@@ -57,8 +54,6 @@ const Signup = ({ setUser }) => {
                     placeholder="Nom d'utilisateur"
                     value={username}
                     onChange={(event) => {
-                        // console.log(event.target.value);
-
                         setUsername(event.target.value);
                     }}
                 />
@@ -68,8 +63,6 @@ const Signup = ({ setUser }) => {
                     placeholder="Email"
                     value={email}
                     onChange={(event) => {
-                        // console.log(event.target.value);
-
                         setEmail(event.target.value);
                     }}
                 />
@@ -79,8 +72,6 @@ const Signup = ({ setUser }) => {
                     placeholder="Phone"
                     value={phone}
                     onChange={(event) => {
-                        // console.log(event.target.value);
-
                         setPhone(event.target.value);
                     }}
                 />
@@ -90,8 +81,6 @@ const Signup = ({ setUser }) => {
                     placeholder="Mot de passe"
                     value={password}
                     onChange={(event) => {
-                        // console.log(event.target.value);
-
                         setPassword(event.target.value);
                     }}
                 />
