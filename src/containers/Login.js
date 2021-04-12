@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useHistory, useLocation } from "react-router-dom";
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, setIdUser }) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [errorMessage, setErrorMessage] = useState("");
@@ -21,7 +21,12 @@ const Login = ({ setUser }) => {
                     { email: email, password: password }
                 );
 
+                console.log(response.data._id);
+
                 // If Token send back to Publish else send back to Home
+                if (response.data._id) {
+                    setIdUser(response.data._id);
+                }
                 if (response.data.token) {
                     setUser(response.data.token);
 

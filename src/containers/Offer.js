@@ -2,8 +2,10 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
+import DeleteOffer from "../components/DeleteOffer";
 
-const Offer = ({ userToken }) => {
+const Offer = ({ userId, userToken }) => {
+    console.log(userId);
     const { id } = useParams();
     // Param ID
 
@@ -18,7 +20,7 @@ const Offer = ({ userToken }) => {
                 );
 
                 // Call the offer with param ID
-
+                console.log(response.data);
                 setData(response.data);
 
                 setIsLoading(false);
@@ -68,9 +70,16 @@ const Offer = ({ userToken }) => {
 
                         {/* Send to payment page with informations */}
 
-                        <Link to={{ pathname: "/payment", state: data }}>
-                            Acheter
-                        </Link>
+                        {userId && userId === data.owner._id ? (
+                            <DeleteOffer
+                                idOffer={data._id}
+                                userToken={userToken}
+                            />
+                        ) : (
+                            <Link to={{ pathname: "/payment", state: data }}>
+                                Acheter
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

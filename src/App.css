@@ -506,6 +506,58 @@ img.preview {
     display: none;
 }
 
+/* DELETE OFFER */
+
+button.delete-offer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #c2175b;
+    color: var(--button-color2);
+    font-size: 16px;
+    height: 36px;
+    padding: 0 16px;
+    line-height: 36px;
+    margin-top: 32px;
+    width: 100%;
+    border-radius: var(--button-radius);
+    border: none;
+    cursor: pointer;
+}
+
+button.delete-offer:hover {
+    background-color: #a0114a;
+}
+
+.message {
+    padding-top: 20px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.message div button {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    min-width: 80px;
+    margin-left: 20px;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+}
+
+.message div button:first-child {
+    background-color: #c2175b;
+    color: var(--button-color2);
+}
+
+.message div button:nth-child(2) {
+    background-color: var(--button-color);
+    color: var(--button-color2);
+}
+
 /* LOADER */
 
 .loader {

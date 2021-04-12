@@ -21,6 +21,8 @@ function App() {
         Cookies.get("userToken") || null
     );
 
+    const [userId, setUserId] = useState(Cookies.get("userId") || null);
+
     // GET to keep userToken in memory, if there is one
 
     const setUser = (token) => {
@@ -32,6 +34,18 @@ function App() {
             // If no token, we remove userToken to disconnect
             Cookies.remove("userToken");
             setUserToken(null);
+        }
+    };
+
+    const setIdUser = (id) => {
+        if (id) {
+            Cookies.set("userId", id, { expires: 2 });
+            // OnCLick, the cookie, is created with his expiration date
+            setUserId(id);
+        } else {
+            // If no token, we remove userToken to disconnect
+            Cookies.remove("userId");
+            setUserId(null);
         }
     };
 
@@ -48,10 +62,10 @@ function App() {
                     <Publish userToken={userToken} />
                 </Route>
                 <Route path="/offer/:id">
-                    <Offer />
+                    <Offer userId={userId} userToken={userToken} />
                 </Route>
                 <Route path="/login">
-                    <Login setUser={setUser} />
+                    <Login setUser={setUser} setIdUser={setIdUser} />
                 </Route>
                 <Route path="/signup">
                     <Signup setUser={setUser} />
