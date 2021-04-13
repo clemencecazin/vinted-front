@@ -12,6 +12,7 @@ import Publish from "./containers/Publish";
 import Payment from "./containers/Payment";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faSearch, faPlus } from "@fortawesome/free-solid-svg-icons";
+import ModifyOffer from "./containers/ModifyOffer";
 library.add(faSearch, faPlus);
 
 function App() {
@@ -56,8 +57,12 @@ function App() {
                 setUser={setUser}
                 data={data}
                 setData={setData}
+                setUserId={setUserId}
             />
             <Switch>
+                <Route path="/modify">
+                    <ModifyOffer userToken={userToken} />
+                </Route>
                 <Route path="/publish">
                     <Publish userToken={userToken} />
                 </Route>
@@ -68,7 +73,7 @@ function App() {
                     <Login setUser={setUser} setIdUser={setIdUser} />
                 </Route>
                 <Route path="/signup">
-                    <Signup setUser={setUser} />
+                    <Signup setUser={setUser} setIdUser={setIdUser} />
                 </Route>
                 <Route path="/payment">
                     <Payment userToken={userToken} />

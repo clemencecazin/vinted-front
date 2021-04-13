@@ -71,10 +71,20 @@ const Offer = ({ userId, userToken }) => {
                         {/* Send to payment page with informations */}
 
                         {userId && userId === data.owner._id ? (
-                            <DeleteOffer
-                                idOffer={data._id}
-                                userToken={userToken}
-                            />
+                            <>
+                                <DeleteOffer
+                                    idOffer={data._id}
+                                    userToken={userToken}
+                                />
+                                <Link
+                                    to={{
+                                        pathname: "/modify",
+                                        state: data,
+                                    }}
+                                >
+                                    Modifier l'annonce
+                                </Link>
+                            </>
                         ) : (
                             <Link to={{ pathname: "/payment", state: data }}>
                                 Acheter

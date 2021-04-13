@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Header = ({ userToken, setUser, data, setData, owner }) => {
+const Header = ({ userToken, setUser, setData, setUserId }) => {
     const [resultSearch, setresultSearch] = useState();
 
     const search = (event) => {
@@ -29,6 +29,11 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
     }, [resultSearch, setData]);
     // Value called, resultSearch and setData
 
+    const signout = () => {
+        setUser(null);
+        setUserId(null);
+    };
+
     return (
         <header>
             <div className="header--container">
@@ -51,10 +56,7 @@ const Header = ({ userToken, setUser, data, setData, owner }) => {
 
                 {userToken ? (
                     <>
-                        <button
-                            className="signout"
-                            onClick={() => setUser(null)}
-                        >
+                        <button className="signout" onClick={() => signout()}>
                             Se déconnecter
                         </button>
                         <Link to="/Publish" className="header--button-sold">

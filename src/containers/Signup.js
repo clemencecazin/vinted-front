@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const Signup = ({ setUser }) => {
+const Signup = ({ setUser, setIdUser }) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -26,6 +26,9 @@ const Signup = ({ setUser }) => {
                     }
                     // Send the informations to DB
                 );
+                if (response.data._id) {
+                    setIdUser(response.data._id);
+                }
                 if (response.data.token) {
                     setUser(response.data.token);
                     history.push("/");
